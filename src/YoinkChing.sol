@@ -12,6 +12,7 @@ contract YoinkChing {
     address public lastYoinker;
     // includes the game in progress
     uint256 public gamesPlayed;
+    uint256 public numberOfYoinks;
 
     event GameStarted(address indexed starter, uint256 blockTimestamp);
     event GameWon(address indexed winner, uint256 prize);
@@ -73,12 +74,14 @@ contract YoinkChing {
     function _setEndGameState() internal {
         lastYoinked = 0;
         lastYoinker = address(0);
+        numberOfYoinks = 0;
         emit GameWon(lastYoinker, block.timestamp);
     }
 
     function _setYoinkState() internal {
         lastYoinked = block.timestamp;
         lastYoinker = msg.sender;
+        numberOfYoinks++;
         emit Yoinked(msg.sender, block.timestamp);
     }
 }
