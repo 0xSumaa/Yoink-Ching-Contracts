@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 contract YoinkChing {
     uint256 public constant HODL_TIME_TO_WIN = 86400; // 24 hours
     uint256 public constant YOINK_COST = 10 ether; // 10 MOXIE
-    uint256 public constant MIN_START_SIZE = 50000 ether; // 50,000 MOXIE
+    uint256 public constant MIN_START_SIZE = 1000 ether; // 50,000 MOXIE
     address public moxieAddress;
     uint256 public lastYoinked;
     address public lastYoinker;
@@ -26,7 +26,7 @@ contract YoinkChing {
     function startGame(uint256 _initBalance) external {
         require(
             _initBalance >= MIN_START_SIZE,
-            "must start with at least 10 MOXIE"
+            "must start with at least 50,000 MOXIE"
         );
         require(
             lastYoinked == 0 && lastYoinker == address(0),
